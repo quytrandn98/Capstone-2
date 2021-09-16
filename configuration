@@ -1,0 +1,40 @@
+### MYSQL Database Server Details        					 
+
+MYSQL_HOST="localhost"
+MYSQL_PORT="3306"
+
+### Mysql user credetials - path to file
+
+MYSQL_CRE=credentials
+
+###  	 Local Database Backup Path						 		 
+
+LOCAL_BACKUP_DIR=
+TMP_PATH=
+LOG_PATH=
+
+###		  MySQL Databases Names to Backup      					 
+
+DB_NAMES=("test" "ezpz")    ### Backup specified databases - array
+
+###  	SFTP Backup		         						 
+
+SFTP_HOST=""
+SFTP_USERNAME=""
+SFTP_PORT="22"
+SFTP_UPLOAD_DIR=""
+SCP="/usr/bin/scp"
+IDENTITY_FILE=""
+
+###  	 Local Executables Path		     						 
+
+GZIP="/bin/gzip"
+MYSQL="/usr/bin/mysql"
+MYSQLDUMP="/usr/bin/mysqldump"
+MKDIR="/bin/mkdir"
+GREP="/bin/grep"
+SLEEP="/bin/sleep"
+FIND="/usr/bin/find"
+MYSQLADMIN="/usr/bin/mysqladmin"
+FIND="/usr/bin/find"
+SSH="/usr/bin/ssh"
