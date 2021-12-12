@@ -8,6 +8,7 @@ LOG_DIR= "/tmp/"
 RULE_FILE="/root/oakenshield/rules.txt"
 DATE=time.strftime("/%Y/%m/")
 LOG_FILE= time.strftime("%d.log")
+LOG_FILE2= time.strftime("%d-all.log")
 INTERFACE=""
 POD_PKT_ID = -1
 POD_PKT_SIZE = 0
@@ -44,6 +45,9 @@ def match_pattern(payload):
 
 def pkt_callback(pkt):
 	create_log_folder(INTERFACE)
+	log = pkt.summary()
+	name = "log_all_data"
+	log_to_file2(INTERFACE, log, name)
 	if IP in pkt:
 		if pkt["IP"].get_field('proto').i2s[pkt.proto] == "icmp":
 			pingOfDeath(pkt["IP"])
@@ -166,7 +170,23 @@ def log_to_file(interface,payload,name):
 	logger.warn(payload)
 	fh.close()
 	remove_duplicate(interface)
-
+def log_to_file2(interface,payload,name):
+	path = LOG_DIR + str(interface) + DATE + LOG_FILE2
+    # Set event log name
+	logger = logging.getLogger(name)
+    # Set log format
+	formatter = logging.Formatter('%(asctime)s - %(name)s - %(message)s')
+    # Set log file
+	fh = logging.FileHandler(path)
+    # Set log level
+	fh.setLevel(logging.WARN)
+    # Set log format
+	fh.setFormatter(formatter)
+	logger.addHandler(fh)
+    # Generate log data
+	logger.warn(payload)
+	fh.close()
+	remove_duplicate(interface)
 if __name__=="__main__":
 	#nics=all_nics()
 	#for interface in nics:
@@ -176,6 +196,6 @@ if __name__=="__main__":
     #  		target=sniff(iface=INTERFACE, prn=pkt_callback, filter="", store=0)
     #	)
 	#	th.start()
-	INTERFACE="ens32"
+	INTERFACE="ens33"
 	read_rule()
-	sniff(iface=INTERFACE,prn=pkt_callback,filter="", store=0)
+	sniff(iface=INTERFACE,prn=pkt_callback ,filter="", store=0)
