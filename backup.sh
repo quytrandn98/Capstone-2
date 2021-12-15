@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #Get configuration details
 CONFIGFILE=configuration
 source $CONFIGFILE
