@@ -1,5 +1,4 @@
 ### MYSQL Database Server Details        					 
-
 MYSQL_HOST="localhost"
 MYSQL_PORT="3306"
 
