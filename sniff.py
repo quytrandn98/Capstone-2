@@ -5,7 +5,7 @@ import netifaces, threading, logging, time, urllib, re, os
 import logging.handlers as handlers
 
 LOG_DIR= "/tmp/"
-RULE_FILE="/root/oakenshield/rules.txt"
+RULE_FILE="/root/Capstone-2/rules.txt"
 DATE=time.strftime("/%Y/%m/")
 LOG_FILE= time.strftime("%d.log")
 LOG_FILE2= time.strftime("%d-all.log")
